@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkt – Nordé Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hopp til innhold</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Nordé Studio hjem">Nordé Studio</a>
+
+      <nav class="nav" aria-label="Hovedmeny">
+        <a href="index.html#categories">Trending</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#about">About</a>
+        <a class="nav-cta" href="index.html#shop">Shop now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section product-page" aria-label="Product details">
+      <div class="container">
+        <a class="text-link" href="index.html#shop">Back to shop</a>
+
+        <div class="product-detail">
+          <div class="product-detail-media">
+            <img id="productImage" src="" alt="" loading="lazy">
+          </div>
+
+          <div class="product-detail-info">
+            <p class="eyebrow" id="productTag">Nordé essentials</p>
+            <h1 class="product-detail-title" id="productTitle">Product</h1>
+            <p class="product-detail-price" id="productPrice">—</p>
+
+            <p class="product-detail-desc" id="productDesc">
+              Minimal, clean and easy to style.
+            </p>
+
+            <div class="product-detail-actions">
+              <a class="btn btn-primary" href="#" aria-label="Add to bag (demo)">Add to bag</a>
+              <a class="btn btn-ghost" href="index.html#shop">Continue shopping</a>
+            </div>
+
+            <div class="product-detail-spec">
+              <div class="spec-row">
+                <span class="spec-label">Color</span>
+                <span class="spec-value" id="productColor">Neutral</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Fit</span>
+                <span class="spec-value" id="productFit">Regular</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Material</span>
+                <span class="spec-value" id="productMaterial">Cotton blend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">Nordé Studio</p>
+        <p class="muted">Minimal fashion, Scandinavian mood.</p>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-title">Shop</p>
+          <a href="index.html#shop">New in</a>
+          <a href="index.html#shop">Basics</a>
+          <a href="index.html#shop">Accessories</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Info</p>
+          <a href="index.html#about">About</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-title">Follow</p>
+          <a href="#" aria-label="Nordé Studio on Instagram">Instagram</a>
+          <a href="#" aria-label="Nordé Studio on TikTok">TikTok</a>
+          <a href="#" aria-label="Nordé Studio newsletter">Newsletter</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="muted">© 2026 Nordé Studio</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const products = {
+      "tailored-blazer": {
+        title: "Tailored blazer",
+        price: "899 NOK",
+        image: "model/topp.jpg",
+        tag: "Nordé essentials",
+        desc: "A clean, tailored blazer with a minimalist silhouette. Style it with denim or matching trousers for an elevated everyday look.",
+        color: "Beige",
+        fit: "Regular",
+        material: "Woven blend"
+      },
+      "straight-leg-trousers": {
+        title: "Straight-leg trousers",
+        price: "2000 NOK",
+        image: "model/satin.jpg",
+        tag: "Trending",
+        desc: "Straight-leg trousers with a smooth finish — an easy base for a Scandinavian capsule wardrobe.",
+        color: "Black",
+        fit: "Straight",
+        material: "Satin blend"
+      },
+      "knit-sweater": {
+        title: "Knit sweater",
+        price: "2499 NOK",
+        image: "model/lillatop.jpg",
+        tag: "Soft knit",
+        desc: "A soft knit with a clean neckline. Perfect with a coat and boots, or layered over a shirt.",
+        color: "Off-white",
+        fit: "Relaxed",
+        material: "Knit blend"
+      },
+      "everyday-tote": {
+        title: "Everyday tote",
+        price: "2999 NOK",
+        image: "model/kjole.jpg",
+        tag: "Everyday",
+        desc: "A simple statement piece made for daily wear — minimal lines, effortless styling.",
+        color: "Neutral",
+        fit: "Regular",
+        material: "Soft blend"
+      },
+      "minimal-midi-skirt": {
+        title: "Minimal midi skirt",
+        price: "3490 NOK",
+        image: "model/jakke2.jpg",
+        tag: "Capsule",
+        desc: "A minimal midi length that works year-round. Pair with knits, blazers or a simple tee.",
+        color: "Beige",
+        fit: "Regular",
+        material: "Woven blend"
+      },
+      "ribbed-top": {
+        title: "Ribbed top",
+        price: "2490 NOK",
+        image: "model/jakke.jpg",
+        tag: "Basics",
+        desc: "A ribbed essential with a clean look. Easy to dress up or down — a staple for every season.",
+        color: "White",
+        fit: "Slim",
+        material: "Ribbed cotton blend"
+      },
+      "ribbed-top-02": {
+        title: "Ribbed top",
+        price: "1149 NOK",
+        image: "model/hvit.jpg",
+        tag: "Basics",
+        desc: "A light ribbed top that layers beautifully under jackets and coats.",
+        color: "White",
+        fit: "Regular",
+        material: "Cotton blend"
+      },
+      "ribbed-top-03": {
+        title: "Ribbed top",
+        price: "5000 NOK",
+        image: "model/hvit2.jpg",
+        tag: "Premium",
+        desc: "A premium ribbed top with a crisp, minimal finish and a refined feel.",
+        color: "White",
+        fit: "Regular",
+        material: "Premium blend"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const fallback = {
+      title: "Product",
+      price: "—",
+      image: "model/topp.jpg",
+      tag: "Nordé Studio",
+      desc: "This product could not be found. Please go back to the shop.",
+      color: "Neutral",
+      fit: "Regular",
+      material: "—"
+    };
+
+    const product = products[id] || fallback;
+
+    document.title = `${product.title} – Nordé Studio`;
+    const img = document.getElementById("productImage");
+    img.src = product.image;
+    img.alt = product.title;
+
+    document.getElementById("productTitle").textContent = product.title;
+    document.getElementById("productPrice").textContent = product.price;
+    document.getElementById("productTag").textContent = product.tag;
+    document.getElementById("productDesc").textContent = product.desc;
+    document.getElementById("productColor").textContent = product.color;
+    document.getElementById("productFit").textContent = product.fit;
+    document.getElementById("productMaterial").textContent = product.material;
+  </script>
+</body>
+</html>
+
