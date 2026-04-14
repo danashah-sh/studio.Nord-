@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessories – Nordé Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="Nordé Studio hjem">Nordé Studio</a>
+        <nav class="nav" aria-label="Hovedmeny">
+          <a href="index.html#categories">Trending</a>
+          <a href="index.html#shop">Shop</a>
+          <a href="index.html#about">About</a>
+          <a class="nav-bag" href="bag.html">
+            Bag <span class="bag-count" data-bag-count>0</span>
+          </a>
+          <a class="nav-cta" href="index.html#shop">Shop now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section" aria-label="Accessories hero">
+        <div class="container section-head">
+          <h2>Accessories</h2>
+          <p>Minimal details: bags, jewelry, belts and everyday add-ons.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Accessories products">
+        <div class="container">
+          <div class="products">
+            <article class="product">
+              <a class="product-media" href="#" aria-label="View accessory one">
+                <img src="model/accessories-1.jpg" alt="Accessory item 1" loading="lazy" />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Mini shoulder bag</h3>
+                <p class="product-price">799 NOK</p>
+              </div>
+            </article>
+
+            <article class="product">
+              <a class="product-media" href="#" aria-label="View accessory two">
+                <img src="model/accessories-2.jpg" alt="Accessory item 2" loading="lazy" />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Gold hoop earrings</h3>
+                <p class="product-price">249 NOK</p>
+              </div>
+            </article>
+
+            <article class="product">
+              <a class="product-media" href="#" aria-label="View accessory three">
+                <img src="model/accessories-3.jpg" alt="Accessory item 3" loading="lazy" />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Leather belt</h3>
+                <p class="product-price">399 NOK</p>
+              </div>
+            </article>
+
+            <article class="product">
+              <a class="product-media" href="#" aria-label="View accessory four">
+                <img src="model/accessories-4.jpg" alt="Accessory item 4" loading="lazy" />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Soft scarf</h3>
+                <p class="product-price">299 NOK</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer">
+      <div class="container footer-bottom">
+        <p class="muted">© 2026 Nordé Studio</p>
+      </div>
+    </footer>
+
+    <script>
+      const header = document.querySelector(".site-header");
+      const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 10);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      function getBag() {
+        try {
+          return JSON.parse(localStorage.getItem("norde_bag") || "[]");
+        } catch {
+          return [];
+        }
+      }
+      function bagItemCount(items) {
+        return items.reduce((sum, item) => sum + (item.qty || 1), 0);
+      }
+      function updateBagCount() {
+        const count = bagItemCount(getBag());
+        document.querySelectorAll("[data-bag-count]").forEach((el) => {
+          el.textContent = String(count);
+        });
+      }
+      updateBagCount();
+    </script>
+  </body>
+</html>

@@ -1,244 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nordé Studio</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <a class="skip-link" href="#main">Hopp til innhold</a>
 
     <!-- HEADER -->
     <header class="site-header" id="home">
-        <div class="container header-inner">
-            <a class="logo" href="#home" aria-label="Nordé Studio hjem">Nordé Studio</a>
+      <div class="container header-inner">
+        <a class="logo" href="#home" aria-label="Nordé Studio hjem"
+          >Nordé Studio</a
+        >
 
-            <nav class="nav" aria-label="Hovedmeny">
-                <a href="#categories">Trending</a>
-                <a href="#shop">Shop</a>
-                <a href="#about">About</a>
-                <a class="nav-cta" href="#shop">Shop now</a>
-            </nav>
-        </div>
+        <nav class="nav" aria-label="Hovedmeny">
+          <a href="#categories">Trending</a>
+          <a href="#shop">Shop</a>
+          <a href="#about">About</a>
+          <a class="nav-bag" href="bag.html">
+            Bag <span class="bag-count" data-bag-count>0</span>
+          </a>
+          <a class="nav-cta" href="#shop">Shop now</a>
+        </nav>
+      </div>
     </header>
 
     <main id="main">
-        <!-- HERO -->
-        <section class="hero" aria-label="Hero">
-            <div class="container hero-inner">
-                <p class="eyebrow">New drop</p>
-                <h1>Minimal pieces. Maximum impact.</h1>
-                <p class="lead">Scandinavian-inspired essentials in neutral tones — made for everyday confidence.</p>
-                <div class="hero-actions">
-                    <a class="btn btn-primary" href="#shop">Shop now</a>
-                    <a class="btn btn-ghost" href="#categories">Explore trending</a>
-                </div>
+      <!-- HERO -->
+      <section class="hero" aria-label="Hero">
+        <div class="container hero-inner">
+          <p class="eyebrow">New drop</p>
+          <h1>Minimal pieces. Maximum impact.</h1>
+          <p class="lead">
+            Scandinavian-inspired essentials in neutral tones — made for
+            everyday confidence.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#shop">Shop now</a>
+            <a class="btn btn-ghost" href="#categories">Explore trending</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES / TRENDING -->
+      <section class="section" id="categories" aria-label="Trending categories">
+        <div class="container">
+          <div class="section-head">
+            <h2>Trending now</h2>
+            <p>Clean silhouettes, soft textures and everyday staples.</p>
+          </div>
+
+          <div class="cards">
+            <a class="card" href="#shop" aria-label="Shop Winter edit">
+              <img
+                src="model/blue.jpg"
+                alt="Winter edit in neutral tones"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Winter edit</h3>
+                <span class="card-link">Shop</span>
+              </div>
+            </a>
+
+            <a class="card" href="#shop" aria-label="Shop Minimal knitwear">
+              <img
+                src="model/blåtopp.jpg"
+                alt="Minimal knitwear"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Minimal knit</h3>
+                <span class="card-link">Shop</span>
+              </div>
+            </a>
+
+            <a class="card" href="accessories.html" aria-label="Shop Accessories">
+              <img
+                src="model/forside.jpg"
+                alt="Accessories: bags and jewelry"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Accessories</h3>
+                <span class="card-link">Shop</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT GRID -->
+      <section class="section" id="shop" aria-label="Products">
+        <div class="container">
+          <div class="section-head section-head-row">
+            <div>
+              <h2>Shop</h2>
+              <p>Simple, elevated, and easy to style.</p>
             </div>
-        </section>
+            <a class="text-link" href="#shop">View all</a>
+          </div>
 
-        <!-- CATEGORIES / TRENDING -->
-        <section class="section" id="categories" aria-label="Trending categories">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Trending now</h2>
-                    <p>Clean silhouettes, soft textures and everyday staples.</p>
-                </div>
+          <div class="products">
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=tailored-blazer"
+                aria-label="View product: Tailored blazer"
+              >
+                <img
+                  src="model/topp.jpg"
+                  alt="Tailored blazer in beige"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Tailored blazer</h3>
+                <p class="product-price">899 NOK</p>
+              </div>
+            </article>
 
-                <div class="cards">
-                    <a class="card" href="#shop" aria-label="Shop Winter edit">
-                        <img src="model/blue.jpg" alt="Winter edit in neutral tones" loading="lazy">
-                        <div class="overlay">
-                            <h3>Winter edit</h3>
-                            <span class="card-link">Shop</span>
-                        </div>
-                    </a>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=straight-leg-trousers"
+                aria-label="View product: Straight-leg trousers"
+              >
+                <img
+                  src="model/satin.jpg"
+                  alt="Straight-leg trousers in black"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Straight-leg trousers</h3>
+                <p class="product-price">2000 NOK</p>
+              </div>
+            </article>
 
-                    <a class="card" href="#shop" aria-label="Shop Minimal knitwear">
-                        <img src="model/blåtopp.jpg" alt="Minimal knitwear" loading="lazy">
-                        <div class="overlay">
-                            <h3>Minimal knit</h3>
-                            <span class="card-link">Shop</span>
-                        </div>
-                    </a>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=knit-sweater"
+                aria-label="View product: Knit sweater"
+              >
+                <img
+                  src="model/lillatop.jpg"
+                  alt="Knit sweater in off-white"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Knit sweater</h3>
+                <p class="product-price">2499 NOK</p>
+              </div>
+            </article>
 
-                    <a class="card" href="#shop" aria-label="Shop Accessories">
-                        <img src="model/forside.jpg" alt="Accessories: bags and jewelry" loading="lazy">
-                        <div class="overlay">
-                            <h3>Accessories</h3>
-                            <span class="card-link">Shop</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=everyday-tote"
+                aria-label="View product: Everyday tote"
+              >
+                <img
+                  src="model/kjole.jpg"
+                  alt="Everyday tote bag"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Everyday tote</h3>
+                <p class="product-price">2999 NOK</p>
+              </div>
+            </article>
 
-        <!-- PRODUCT GRID -->
-        <section class="section" id="shop" aria-label="Products">
-            <div class="container">
-                <div class="section-head section-head-row">
-                    <div>
-                        <h2>Shop</h2>
-                        <p>Simple, elevated, and easy to style.</p>
-                    </div>
-                    <a class="text-link" href="#shop">View all</a>
-                </div>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=minimal-midi-skirt"
+                aria-label="View product: Minimal midi skirt"
+              >
+                <img
+                  src="model/jakke2.jpg"
+                  alt="Minimal midi skirt in beige"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Minimal midi skirt</h3>
+                <p class="product-price">3490 NOK</p>
+              </div>
+            </article>
 
-                <div class="products">
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=tailored-blazer" aria-label="View product: Tailored blazer">
-                            <img src="model/topp.jpg" alt="Tailored blazer in beige" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Tailored blazer</h3>
-                            <p class="product-price">899 NOK</p>
-                        </div>
-                    </article>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=ribbed-top"
+                aria-label="View product: Ribbed top"
+              >
+                <img
+                  src="model/jakke.jpg"
+                  alt="Ribbed top in white"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Ribbed top</h3>
+                <p class="product-price">2490 NOK</p>
+              </div>
+            </article>
 
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=straight-leg-trousers" aria-label="View product: Straight-leg trousers">
-                            <img src="model/satin.jpg" alt="Straight-leg trousers in black" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Straight-leg trousers</h3>
-                            <p class="product-price">2000 NOK</p>
-                        </div>
-                    </article>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=ribbed-top-02"
+                aria-label="View product: Ribbed top"
+              >
+                <img
+                  src="model/hvit.jpg"
+                  alt="Ribbed top in white"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Ribbed top</h3>
+                <p class="product-price">1149 NOK</p>
+              </div>
+            </article>
 
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=knit-sweater" aria-label="View product: Knit sweater">
-                            <img src="model/lillatop.jpg" alt="Knit sweater in off-white" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Knit sweater</h3>
-                            <p class="product-price">2499 NOK</p>
-                        </div>
-                    </article>
+            <article class="product">
+              <a
+                class="product-media"
+                href="product.html?id=ribbed-top-03"
+                aria-label="View product: Ribbed top"
+              >
+                <img
+                  src="model/hvit2.jpg"
+                  alt="Ribbed top in white"
+                  loading="lazy"
+                />
+              </a>
+              <div class="product-meta">
+                <h3 class="product-title">Ribbed top</h3>
+                <p class="product-price">5000 NOK</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=everyday-tote" aria-label="View product: Everyday tote">
-                            <img src="model/kjole.jpg" alt="Everyday tote bag" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Everyday tote</h3>
-                            <p class="product-price">2999 NOK</p>
-                        </div>
-                    </article>
+      <!-- ABOUT -->
+      <section class="section about" id="about" aria-label="About Nordé Studio">
+        <div class="container about-inner">
+          <div class="about-copy">
+            <h2>About Nordé</h2>
+            <p>
+              Nordé Studio is inspired by Scandinavian minimalism: clean lines,
+              soft textures, and timeless essentials. We design for young women
+              who want effortless outfits that feel elevated — without trying
+              too hard.
+            </p>
+            <a class="btn btn-ghost" href="#shop">Discover the collection</a>
+          </div>
 
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=minimal-midi-skirt" aria-label="View product: Minimal midi skirt">
-                            <img src="model/jakke2.jpg" alt="Minimal midi skirt in beige" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Minimal midi skirt</h3>
-                            <p class="product-price">3490 NOK</p>
-                        </div>
-                    </article>
-
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=ribbed-top" aria-label="View product: Ribbed top">
-                            <img src="model/jakke.jpg" alt="Ribbed top in white" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Ribbed top</h3>
-                            <p class="product-price">2490 NOK</p>
-                        </div>
-                    </article>
-
-                    
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=ribbed-top-02" aria-label="View product: Ribbed top">
-                            <img src="model/hvit.jpg" alt="Ribbed top in white" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Ribbed top</h3>
-                            <p class="product-price">1149 NOK</p>
-                        </div>
-                    </article>
-
-                    
-                    <article class="product">
-                        <a class="product-media" href="product.html?id=ribbed-top-03" aria-label="View product: Ribbed top">
-0                            <img src="model/hvit2.jpg" alt="Ribbed top in white" loading="lazy">
-                        </a>
-                        <div class="product-meta">
-                            <h3 class="product-title">Ribbed top</h3>
-                            <p class="product-price">5000 NOK</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section class="section about" id="about" aria-label="About Nordé Studio">
-            <div class="container about-inner">
-                <div class="about-copy">
-                    <h2>About Nordé</h2>
-                    <p>
-                        Nordé Studio is inspired by Scandinavian minimalism: clean lines, soft textures,
-                        and timeless essentials. We design for young women who want effortless outfits
-                        that feel elevated — without trying too hard.
-                    </p>
-                    <a class="btn btn-ghost" href="#shop">Discover the collection</a>
-                </div>
-
-                <div class="about-media" aria-hidden="true">
-                    <img src="model/model2.jpg" alt="" loading="lazy">
-                </div>
-            </div>
-        </section>
+          <div class="about-media" aria-hidden="true">
+            <img src="model/model2.jpg" alt="" loading="lazy" />
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer" aria-label="Footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <p class="footer-logo">Nordé Studio</p>
-                <p class="muted">Minimal fashion, Scandinavian mood.</p>
-            </div>
-
-            <div class="footer-cols">
-                <div class="footer-col">
-                    <p class="footer-title">Shop</p>
-                    <a href="#shop">New in</a>
-                    <a href="#shop">Basics</a>
-                    <a href="#shop">Accessories</a>
-                </div>
-
-                <div class="footer-col">
-                    <p class="footer-title">Info</p>
-                    <a href="#about">About</a>
-                    <a href="#">Shipping</a>
-                    <a href="#">Returns</a>
-                </div>
-
-                <div class="footer-col">
-                    <p class="footer-title">Follow</p>
-                    <a href="#" aria-label="Nordé Studio on Instagram">Instagram</a>
-                    <a href="#" aria-label="Nordé Studio on TikTok">TikTok</a>
-                    <a href="#" aria-label="Nordé Studio newsletter">Newsletter</a>
-                </div>
-            </div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <p class="footer-logo">Nordé Studio</p>
+          <p class="muted">Minimal fashion, Scandinavian mood.</p>
         </div>
 
-        <div class="container footer-bottom">
-            <p class="muted">© 2026 Nordé Studio</p>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <p class="footer-title">Shop</p>
+            <a href="#shop">New in</a>
+            <a href="#shop">Basics</a>
+            <a href="accessories.html">Accessories</a>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-title">Info</p>
+            <a href="#about">About</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-title">Follow</p>
+            <a href="#" aria-label="Nordé Studio on Instagram">Instagram</a>
+            <a href="#" aria-label="Nordé Studio on TikTok">TikTok</a>
+            <a href="#" aria-label="Nordé Studio newsletter">Newsletter</a>
+          </div>
         </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="muted">© 2026 Nordé Studio</p>
+      </div>
     </footer>
 
     <script>
-        // Adds a subtle header background after scroll (beginner-friendly, optional).
-        const header = document.querySelector('.site-header');
-        const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-    </script>
+      // Adds a subtle header background after scroll (beginner-friendly, optional).
+      const header = document.querySelector(".site-header");
+      const onScroll = () =>
+        header.classList.toggle("is-scrolled", window.scrollY > 10);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
 
-</body>
+      // Bag count (reads from localStorage)
+      function getBag() {
+        try {
+          return JSON.parse(localStorage.getItem("norde_bag") || "[]");
+        } catch {
+          return [];
+        }
+      }
+
+      function bagItemCount(items) {
+        return items.reduce((sum, item) => sum + (item.qty || 1), 0);
+      }
+
+      function updateBagCount() {
+        const items = getBag();
+        const count = bagItemCount(items);
+        document.querySelectorAll("[data-bag-count]").forEach((el) => {
+          el.textContent = String(count);
+          el.setAttribute("aria-label", `${count} items in bag`);
+        });
+      }
+
+      window.addEventListener("storage", updateBagCount);
+      updateBagCount();
+    </script>
+  </body>
 </html>
