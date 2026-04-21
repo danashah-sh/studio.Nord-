@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bag – Nordé Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="Nordé Studio hjem">Nordé Studio</a>
+
+        <nav class="nav" aria-label="Hovedmeny">
+          <a href="index.html#categories">Trending</a>
+          <a href="index.html#shop">Shop</a>
+          <a href="index.html#about">About</a>
+          <a class="nav-bag" href="bag.html">
+            Bag <span class="bag-count" data-bag-count>0</span>
+          </a>
+          <a class="nav-cta" href="index.html#shop">Shop now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section bag-page" aria-label="Shopping bag">
+        <div class="container">
+          <div class="section-head section-head-row">
+            <div>
+              <h2>Bag</h2>
+              <p class="muted">Your selected items.</p>
+            </div>
+            <button class="text-link" id="clearBagBtn" type="button">Clear</button>
+          </div>
+
+          <div class="bag-layout">
+            <div class="bag-items" id="bagItems"></div>
+
+            <aside class="bag-summary" aria-label="Summary">
+              <p class="footer-title">Summary</p>
+              <div class="spec-row">
+                <span class="spec-label">Items</span>
+                <span class="spec-value" id="summaryItems">0</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Total</span>
+                <span class="spec-value" id="summaryTotal">0 NOK</span>
+              </div>
+              <button class="btn btn-primary" id="checkoutBtn" type="button">
+                Checkout
+              </button>
+              <p class="muted" id="checkoutMessage" aria-live="polite"></p>
+              <a class="btn btn-ghost" href="index.html#shop">Continue shopping</a>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer">
+      <div class="container footer-bottom">
+        <p class="muted">© 2026 Nordé Studio</p>
+      </div>
+    </footer>
+
+    <script>
+      function getBag() {
+        try {
+          return JSON.parse(localStorage.getItem("norde_bag") || "[]");
+        } catch {
+          return [];
+        }
+      }
+
+      function saveBag(items) {
+        localStorage.setItem("norde_bag", JSON.stringify(items));
+      }
+
+      function bagItemCount(items) {
+        return items.reduce((sum, item) => sum + (item.qty || 1), 0);
+      }
+
+      function formatNok(n) {
+        return `${n} NOK`;
+      }
+
+      function updateBagCount() {
+        const count = bagItemCount(getBag());
+        document.querySelectorAll("[data-bag-count]").forEach((el) => {
+          el.textContent = String(count);
+          el.setAttribute("aria-label", `${count} items in bag`);
+        });
+      }
+
+      function renderBag() {
+        const items = getBag();
+        const bagItemsEl = document.getElementById("bagItems");
+        if (!bagItemsEl) return;
+
+        if (items.length === 0) {
+          bagItemsEl.innerHTML = `
+            <div class="bag-empty">
+              <p class="footer-title">Your bag is empty</p>
+              <p class="muted">Start by adding items from the shop.</p>
+              <a class="btn btn-primary" href="index.html#shop">Go to shop</a>
+            </div>
+          `;
+        } else {
+          bagItemsEl.innerHTML = items
+            .map(
+              (item) => `
+                <article class="bag-item" data-id="${item.id}">
+                  <a class="bag-item-media" href="product.html?id=${encodeURIComponent(item.id)}">
+                    <img src="${item.image}" alt="${item.title}" />
+                  </a>
+                  <div class="bag-item-info">
+                    <div class="bag-item-top">
+                      <h3 class="product-title">${item.title}</h3>
+                      <p class="product-price">${item.priceText}</p>
+                    </div>
+                    <div class="bag-item-controls">
+                      <div class="qty">
+                        <button class="qty-btn" type="button" data-action="dec">-</button>
+                        <span class="qty-value">${item.qty || 1}</span>
+                        <button class="qty-btn" type="button" data-action="inc">+</button>
+                      </div>
+                      <button class="text-link bag-remove" type="button" data-action="remove">Remove</button>
+                    </div>
+                  </div>
+                </article>
+              `
+            )
+            .join("");
+        }
+
+        const total = items.reduce(
+          (sum, item) => sum + (item.price || 0) * (item.qty || 1),
+          0
+        );
+        const count = bagItemCount(items);
+        document.getElementById("summaryItems").textContent = String(count);
+        document.getElementById("summaryTotal").textContent = formatNok(total);
+
+        const checkoutBtn = document.getElementById("checkoutBtn");
+        if (checkoutBtn) checkoutBtn.disabled = count === 0;
+
+        updateBagCount();
+      }
+
+      function updateItem(id, updater) {
+        const items = getBag();
+        const index = items.findIndex((item) => item.id === id);
+        if (index === -1) return;
+
+        updater(items[index]);
+
+        if ((items[index].qty || 1) <= 0) {
+          items.splice(index, 1);
+        }
+
+        saveBag(items);
+        renderBag();
+      }
+
+      document.addEventListener("click", (event) => {
+        const actionButton = event.target.closest("[data-action]");
+        if (!actionButton) return;
+
+        const row = actionButton.closest(".bag-item");
+        if (!row) return;
+
+        const id = row.getAttribute("data-id");
+        const action = actionButton.getAttribute("data-action");
+
+        if (action === "inc") updateItem(id, (item) => (item.qty = (item.qty || 1) + 1));
+        if (action === "dec") updateItem(id, (item) => (item.qty = (item.qty || 1) - 1));
+        if (action === "remove") {
+          const items = getBag().filter((item) => item.id !== id);
+          saveBag(items);
+          renderBag();
+        }
+      });
+
+      const clearBtn = document.getElementById("clearBagBtn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          saveBag([]);
+          renderBag();
+          const message = document.getElementById("checkoutMessage");
+          if (message) message.textContent = "Bag cleared.";
+        });
+      }
+
+      const checkoutBtn = document.getElementById("checkoutBtn");
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+          const items = getBag();
+          const message = document.getElementById("checkoutMessage");
+
+          if (bagItemCount(items) === 0) {
+            if (message) message.textContent = "Your bag is empty.";
+            return;
+          }
+
+          window.location.href = "checkout.html";
+        });
+      }
+
+      window.addEventListener("storage", renderBag);
+      renderBag();
+    </script>
+  </body>
+</html>

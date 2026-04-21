@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout – Nordé Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Hopp til innhold</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="Nordé Studio hjem">Nordé Studio</a>
+
+        <nav class="nav" aria-label="Hovedmeny">
+          <a href="index.html#categories">Trending</a>
+          <a href="index.html#shop">Shop</a>
+          <a href="index.html#about">About</a>
+          <a class="nav-bag" href="bag.html">
+            Bag <span class="bag-count" data-bag-count>0</span>
+          </a>
+          <a class="nav-cta" href="index.html#shop">Shop now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section checkout-page" aria-label="Checkout">
+        <div class="container">
+          <div class="section-head section-head-row">
+            <div>
+              <h2>Checkout</h2>
+              <p class="muted">Fill in your delivery information.</p>
+            </div>
+            <a class="text-link" href="bag.html">Back to bag</a>
+          </div>
+
+          <div class="checkout-layout">
+            <form class="checkout-form" id="checkoutForm" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="firstName">First name</label>
+                  <input id="firstName" name="firstName" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="lastName">Last name</label>
+                  <input id="lastName" name="lastName" type="text" required />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required />
+                </div>
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text" required />
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="postalCode">Postal code</label>
+                  <input id="postalCode" name="postalCode" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="city">City</label>
+                  <input id="city" name="city" type="text" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="country">Country</label>
+                <input id="country" name="country" type="text" required />
+              </div>
+
+              <button class="btn btn-primary" id="placeOrderBtn" type="submit">
+                Place order
+              </button>
+              <p class="muted" id="checkoutStatus" aria-live="polite"></p>
+            </form>
+
+            <aside class="bag-summary" aria-label="Order summary">
+              <p class="footer-title">Order summary</p>
+              <div class="spec-row">
+                <span class="spec-label">Items</span>
+                <span class="spec-value" id="summaryItems">0</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Total</span>
+                <span class="spec-value" id="summaryTotal">0 NOK</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer">
+      <div class="container footer-bottom">
+        <p class="muted">© 2026 Nordé Studio</p>
+      </div>
+    </footer>
+
+    <script>
+      function getBag() {
+        try {
+          return JSON.parse(localStorage.getItem("norde_bag") || "[]");
+        } catch {
+          return [];
+        }
+      }
+
+      function saveBag(items) {
+        localStorage.setItem("norde_bag", JSON.stringify(items));
+      }
+
+      function bagItemCount(items) {
+        return items.reduce((sum, item) => sum + (item.qty || 1), 0);
+      }
+
+      function formatNok(n) {
+        return `${n} NOK`;
+      }
+
+      function updateBagCount() {
+        const count = bagItemCount(getBag());
+        document.querySelectorAll("[data-bag-count]").forEach((el) => {
+          el.textContent = String(count);
+        });
+      }
+
+      function updateSummary() {
+        const items = getBag();
+        const count = bagItemCount(items);
+        const total = items.reduce(
+          (sum, item) => sum + (item.price || 0) * (item.qty || 1),
+          0
+        );
+
+        document.getElementById("summaryItems").textContent = String(count);
+        document.getElementById("summaryTotal").textContent = formatNok(total);
+
+        if (count === 0) {
+          window.location.href = "bag.html";
+        }
+      }
+
+      const form = document.getElementById("checkoutForm");
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const status = document.getElementById("checkoutStatus");
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            if (status) status.textContent = "Please fill in all required fields.";
+            return;
+          }
+
+          const orderId = `NS-${Date.now().toString().slice(-6)}`;
+          saveBag([]);
+          updateBagCount();
+
+          if (status) {
+            status.textContent = `Order ${orderId} placed successfully.`;
+          }
+
+          const button = document.getElementById("placeOrderBtn");
+          if (button) {
+            button.disabled = true;
+            button.textContent = "Order placed";
+          }
+
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1400);
+        });
+      }
+
+      updateBagCount();
+      updateSummary();
+    </script>
+  </body>
+</html>
